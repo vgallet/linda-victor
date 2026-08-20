@@ -1,0 +1,56 @@
+---
+import { weddingConfig } from '../config/wedding.config';
+import { withBase } from '../lib/paths';
+import SectionHeading from './SectionHeading.astro';
+
+const { weddingPlanner } = weddingConfig;
+const photoUrl = withBase(weddingPlanner.photo);
+---
+
+<section id="wedding-planner" class="bg-ivory px-5 py-24 sm:px-8 sm:py-32">
+  <div class="mx-auto max-w-5xl">
+    <SectionHeading
+      eyebrow={weddingPlanner.eyebrow}
+      title={weddingPlanner.title}
+    />
+
+    <div class="mt-16 grid items-center gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
+      <div class="reveal mx-auto w-full max-w-sm">
+        <div class="overflow-hidden rounded-card border border-sand/60">
+          <img
+            src={photoUrl}
+            alt={weddingPlanner.photoAlt}
+            loading="lazy"
+            decoding="async"
+            width="640"
+            height="640"
+            class="aspect-square h-full w-full object-cover"
+          />
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-serif text-3xl text-ink">{weddingPlanner.name}</h3>
+        <p class="mt-2 text-sm tracking-[0.18em] text-gold uppercase">
+          {weddingPlanner.agency}
+        </p>
+        <p class="mt-1 text-sm text-muted">{weddingPlanner.role}</p>
+
+        <p class="mt-6 text-base leading-relaxed text-muted">
+          {weddingPlanner.description}
+        </p>
+
+        <div class="mt-8">
+          <a
+            class="btn btn-primary"
+            href={weddingPlanner.websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {weddingPlanner.websiteLabel}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

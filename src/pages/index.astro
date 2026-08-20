@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import VenueSection from '../components/VenueSection.astro';
+import AccommodationSection from '../components/AccommodationSection.astro';
+import ScheduleSection from '../components/ScheduleSection.astro';
+import GiftRegistrySection from '../components/GiftRegistrySection.astro';
+import PlaylistSection from '../components/PlaylistSection.astro';
+import WeddingPlannerSection from '../components/WeddingPlannerSection.astro';
+import RsvpSection from '../components/RsvpSection.astro';
+import { weddingConfig } from '../config/wedding.config';
+
+const { accommodation, giftRegistry, playlist, schedule, weddingPlanner } = weddingConfig;
+---
+
+<BaseLayout>
+  <HeroSection />
+  <VenueSection />
+  {accommodation.enabled && <AccommodationSection />}
+  {schedule.enabled && <ScheduleSection />}
+  {giftRegistry.enabled && <GiftRegistrySection />}
+  {playlist.enabled && <PlaylistSection />}
+  {weddingPlanner.enabled && <WeddingPlannerSection />}
+  <RsvpSection />
+</BaseLayout>

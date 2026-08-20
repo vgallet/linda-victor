@@ -1,0 +1,63 @@
+---
+import { weddingConfig } from '../config/wedding.config';
+import { withBase } from '../lib/paths';
+import CountdownTimer from './CountdownTimer.astro';
+
+const { couple, date, hero, venue } = weddingConfig;
+const backgroundUrl = withBase(hero.backgroundImage);
+---
+
+<section id="accueil" class="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden">
+  <div
+    class="absolute inset-0 -z-20 bg-shell bg-cover bg-top"
+    style={`background-image: url('${backgroundUrl}')`}
+    role="presentation"
+  >
+  </div>
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-b from-ivory/70 via-ivory/60 to-ivory/90"
+    role="presentation"
+  >
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-3xl px-5 py-28 text-center sm:px-8">
+    <p class="eyebrow reveal">{hero.introduction}</p>
+
+    <h1 class="reveal mt-8 font-serif text-6xl leading-[0.95] text-ink sm:text-7xl md:text-8xl">
+      {couple.partnerOne}
+      <span class="block py-2 text-3xl text-gold italic sm:text-4xl">&</span>
+      {couple.partnerTwo}
+    </h1>
+
+    <div class="reveal mt-10 flex flex-col items-center gap-3">
+      <p class="text-sm tracking-[0.3em] text-ink uppercase">{date.shortLabel}</p>
+      <div class="h-px w-24 bg-gold/60"></div>
+      <p class="text-sm tracking-[0.18em] text-muted uppercase">{venue.name}</p>
+    </div>
+
+    <div class="reveal mt-12">
+      <CountdownTimer />
+    </div>
+
+    <div class="reveal mt-12">
+      <a href="#rsvp" class="btn btn-primary">{hero.ctaLabel}</a>
+    </div>
+  </div>
+
+  <a
+    href="#lieu"
+    class="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 text-sage-dark transition-colors hover:text-ink"
+  >
+    <span class="sr-only">Découvrir le lieu</span>
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.25"
+      class="h-6 w-6"
+    >
+      <path d="M12 4v15m0 0 6-6m-6 6-6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </a>
+</section>

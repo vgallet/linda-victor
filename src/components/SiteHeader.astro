@@ -1,0 +1,127 @@
+---
+import { navigationLinks } from '../config/navigation';
+import { weddingConfig } from '../config/wedding.config';
+
+const { couple } = weddingConfig;
+const monogram = `${couple.partnerOne.charAt(0)} & ${couple.partnerTwo.charAt(0)}`;
+---
+
+<header
+  id="site-header"
+  data-site-header
+  class="fixed inset-x-0 top-0 z-40 transition-all duration-300"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+    <a
+      href="#accueil"
+      class="font-serif text-xl tracking-[0.2em] text-ink transition-colors"
+      data-header-brand
+    >
+      {monogram}
+    </a>
+
+    <nav aria-label="Navigation principale" class="hidden md:block">
+      <ul class="flex items-center gap-8">
+        {
+          navigationLinks.map((link) => (
+            <li>
+              <a
+                href={`#${link.id}`}
+                class="text-xs tracking-[0.18em] text-ink/80 uppercase transition-colors hover:text-sage-dark"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="mobile-navigation"
+      class="flex h-10 w-10 items-center justify-center rounded-full border border-sand/70 bg-ivory/60 backdrop-blur md:hidden"
+    >
+      <span class="sr-only">Ouvrir le menu</span>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        class="h-5 w-5 text-ink"
+      >
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav
+    id="mobile-navigation"
+    aria-label="Navigation mobile"
+    data-mobile-nav
+    hidden
+    class="border-t border-sand/60 bg-ivory/95 backdrop-blur md:hidden"
+  >
+    <ul class="mx-auto flex max-w-6xl flex-col px-5 py-2 sm:px-8">
+      {
+        navigationLinks.map((link) => (
+          <li>
+            <a
+              href={`#${link.id}`}
+              data-mobile-nav-link
+              class="block border-b border-sand/40 py-3 text-xs tracking-[0.18em] text-ink uppercase last:border-b-0"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const mobileNav = document.querySelector<HTMLElement>('[data-mobile-nav]');
+  const SCROLLED_CLASSES = ['bg-ivory/95', 'backdrop-blur', 'shadow-[0_1px_0_rgba(0,0,0,0.06)]'];
+
+  function syncHeaderBackground(): void {
+    if (!header) return;
+    const isScrolled = window.scrollY > 24;
+    const isMenuOpen = toggle?.getAttribute('aria-expanded') === 'true';
+    header.classList.toggle('py-0', isScrolled);
+    for (const className of SCROLLED_CLASSES) {
+      header.classList.toggle(className, isScrolled || Boolean(isMenuOpen));
+    }
+  }
+
+  function closeMobileNav(): void {
+    if (!toggle || !mobileNav) return;
+    toggle.setAttribute('aria-expanded', 'false');
+    mobileNav.hidden = true;
+    syncHeaderBackground();
+  }
+
+  toggle?.addEventListener('click', () => {
+    if (!mobileNav) return;
+    const willOpen = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(willOpen));
+    mobileNav.hidden = !willOpen;
+    syncHeaderBackground();
+  });
+
+  for (const link of document.querySelectorAll('[data-mobile-nav-link]')) {
+    link.addEventListener('click', closeMobileNav);
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMobileNav();
+  });
+
+  window.addEventListener('scroll', syncHeaderBackground, { passive: true });
+  syncHeaderBackground();
+</script>

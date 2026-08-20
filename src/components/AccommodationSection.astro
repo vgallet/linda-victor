@@ -1,0 +1,38 @@
+---
+import { weddingConfig } from '../config/wedding.config';
+import SectionHeading from './SectionHeading.astro';
+
+const { accommodation } = weddingConfig;
+---
+
+<section id="sejour" class="bg-shell/40 px-5 py-24 sm:px-8 sm:py-32">
+  <div class="mx-auto max-w-5xl">
+    <SectionHeading
+      eyebrow={accommodation.eyebrow}
+      title={accommodation.title}
+      description={accommodation.description}
+    />
+
+    <ul class="mt-14 grid gap-6 sm:grid-cols-2">
+      {
+        accommodation.hotels.map((hotel) => (
+          <li class="reveal flex h-full flex-col rounded-card border border-sand/60 bg-ivory p-8">
+            <p class="text-xs tracking-[0.18em] text-gold uppercase">{hotel.distance}</p>
+            <h3 class="mt-3 font-serif text-2xl text-ink">{hotel.name}</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-muted">{hotel.description}</p>
+            {hotel.url && hotel.url !== '#' && (
+              <a
+                href={hotel.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-6 text-xs tracking-[0.18em] text-sage-dark uppercase transition-colors hover:text-ink"
+              >
+                Voir l’établissement →
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

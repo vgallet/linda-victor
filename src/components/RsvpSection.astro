@@ -1,0 +1,136 @@
+---
+import { weddingConfig } from '../config/wedding.config';
+import SectionHeading from './SectionHeading.astro';
+
+const { rsvp } = weddingConfig;
+
+/** Injected at build time; empty during local dev without a `.env`. */
+const endpoint = import.meta.env.PUBLIC_RSVP_ENDPOINT ?? '';
+const missingEndpointMessage = `Le formulaire n’est pas encore relié. Écrivez-nous à ${rsvp.contactEmail}.`;
+
+const guestCountOptions = Array.from({ length: rsvp.maxAdditionalGuests + 1 }, (_, index) => index + 1);
+---
+
+<section id="rsvp" class="bg-ivory px-5 py-24 sm:px-8 sm:py-32">
+  <div class="mx-auto max-w-2xl">
+    <SectionHeading eyebrow={rsvp.eyebrow} title={rsvp.title} description={rsvp.description} />
+
+    <p class="reveal mt-6 text-center text-sm tracking-[0.18em] text-gold uppercase">
+      {rsvp.deadlineLabel}
+    </p>
+
+    <form
+      data-rsvp-form
+      data-endpoint={endpoint}
+      data-success-message={rsvp.successMessage}
+      data-error-message={rsvp.errorMessage}
+      data-missing-endpoint-message={missingEndpointMessage}
+      class="reveal mt-12 space-y-6"
+      novalidate
+    >
+      <div>
+        <label class="field-label" for="rsvp-fullName">Nom et prénom</label>
+        <input
+          class="field-control"
+          id="rsvp-fullName"
+          name="fullName"
+          type="text"
+          autocomplete="name"
+          required
+        />
+        <p class="field-error" data-error-for="fullName" hidden></p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div>
+          <label class="field-label" for="rsvp-email">E-mail</label>
+          <input
+            class="field-control"
+            id="rsvp-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+          <p class="field-error" data-error-for="email" hidden></p>
+        </div>
+        <div>
+          <label class="field-label" for="rsvp-phone">Téléphone (facultatif)</label>
+          <input
+            class="field-control"
+            id="rsvp-phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+          />
+        </div>
+      </div>
+
+      <fieldset>
+        <legend class="field-label">Serez-vous présent(e) ?</legend>
+        <div class="mt-1 grid gap-3 sm:grid-cols-2">
+          <label
+            class="flex cursor-pointer items-center gap-3 rounded-xl border border-sand bg-white/60 px-4 py-3 text-sm has-[:checked]:border-sage-dark has-[:checked]:bg-sage/10"
+          >
+            <input class="accent-sage-dark" type="radio" name="attending" value="oui" required />
+            Avec joie, je serai là
+          </label>
+          <label
+            class="flex cursor-pointer items-center gap-3 rounded-xl border border-sand bg-white/60 px-4 py-3 text-sm has-[:checked]:border-sage-dark has-[:checked]:bg-sage/10"
+          >
+            <input class="accent-sage-dark" type="radio" name="attending" value="non" />
+            Je ne pourrai pas venir
+          </label>
+        </div>
+        <p class="field-error" data-error-for="attending" hidden></p>
+      </fieldset>
+
+      <div data-rsvp-attending-details hidden class="grid gap-6 sm:grid-cols-2">
+        <div>
+          <label class="field-label" for="rsvp-guestCount">Nombre de personnes</label>
+          <select class="field-control" id="rsvp-guestCount" name="guestCount">
+            {guestCountOptions.map((count) => <option value={count}>{count}</option>)}
+          </select>
+        </div>
+        <div>
+          <label class="field-label" for="rsvp-dietary">Régime / allergies</label>
+          <input
+            class="field-control"
+            id="rsvp-dietary"
+            name="dietary"
+            type="text"
+            placeholder="Végétarien, sans gluten…"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label class="field-label" for="rsvp-message">Un petit mot (facultatif)</label>
+        <textarea class="field-control" id="rsvp-message" name="message" rows="4"></textarea>
+      </div>
+
+      {/* Honeypot: hidden from guests, a lure for spam bots. */}
+      <div aria-hidden="true" class="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label for="rsvp-website">Ne pas remplir</label>
+        <input id="rsvp-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="pt-2 text-center">
+        <button type="submit" data-rsvp-submit class="btn btn-primary">Envoyer ma réponse</button>
+      </div>
+
+      <p
+        data-rsvp-feedback
+        role="status"
+        aria-live="polite"
+        hidden
+        class="text-center text-sm leading-relaxed"
+      >
+      </p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import '../scripts/rsvp-form';
+</script>

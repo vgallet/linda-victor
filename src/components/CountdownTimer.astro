@@ -1,0 +1,75 @@
+---
+import { weddingConfig } from '../config/wedding.config';
+
+const { date } = weddingConfig;
+
+const units = [
+  { key: 'days', label: 'Jours' },
+  { key: 'hours', label: 'Heures' },
+  { key: 'minutes', label: 'Minutes' },
+  { key: 'seconds', label: 'Secondes' },
+] as const;
+---
+
+<div
+  data-countdown
+  data-target-date={date.isoDate}
+  class="flex items-start justify-center gap-4 sm:gap-8"
+  aria-live="off"
+>
+  {
+    units.map((unit) => (
+      <div class="min-w-16 text-center sm:min-w-20">
+        <span
+          data-countdown-value={unit.key}
+          class="block font-serif text-3xl text-ink tabular-nums sm:text-4xl"
+        >
+          --
+        </span>
+        <span class="mt-1 block text-[0.625rem] tracking-[0.22em] text-muted uppercase sm:text-xs">
+          {unit.label}
+        </span>
+      </div>
+    ))
+  }
+</div>
+
+<p data-countdown-done hidden class="font-serif text-2xl text-ink">
+  C’est aujourd’hui, le grand jour est arrivé !
+</p>
+
+<script>
+  const MS_PER_SECOND = 1000;
+  const MS_PER_MINUTE = MS_PER_SECOND * 60;
+  const MS_PER_HOUR = MS_PER_MINUTE * 60;
+  const MS_PER_DAY = MS_PER_HOUR * 24;
+
+  const container = document.querySelector<HTMLElement>('[data-countdown]');
+  const doneMessage = document.querySelector<HTMLElement>('[data-countdown-done]');
+  const targetDate = container ? new Date(container.dataset.targetDate ?? '') : null;
+
+  function setValue(key: string, value: number): void {
+    const element = container?.querySelector<HTMLElement>(`[data-countdown-value="${key}"]`);
+    if (element) element.textContent = String(value).padStart(2, '0');
+  }
+
+  function renderCountdown(): void {
+    if (!container || !targetDate || Number.isNaN(targetDate.getTime())) return;
+
+    const remaining = targetDate.getTime() - Date.now();
+    if (remaining <= 0) {
+      container.hidden = true;
+      if (doneMessage) doneMessage.hidden = false;
+      window.clearInterval(intervalId);
+      return;
+    }
+
+    setValue('days', Math.floor(remaining / MS_PER_DAY));
+    setValue('hours', Math.floor((remaining % MS_PER_DAY) / MS_PER_HOUR));
+    setValue('minutes', Math.floor((remaining % MS_PER_HOUR) / MS_PER_MINUTE));
+    setValue('seconds', Math.floor((remaining % MS_PER_MINUTE) / MS_PER_SECOND));
+  }
+
+  const intervalId = window.setInterval(renderCountdown, MS_PER_SECOND);
+  renderCountdown();
+</script>
