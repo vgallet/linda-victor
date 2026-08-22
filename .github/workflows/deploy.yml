@@ -19,6 +19,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # The RSVP endpoint is a `github-pages` environment variable, and
+    # `PUBLIC_*` vars are inlined at build time — so the build job must
+    # run in that environment to read `vars.PUBLIC_RSVP_ENDPOINT`.
+    environment:
+      name: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
