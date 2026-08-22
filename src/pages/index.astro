@@ -16,10 +16,10 @@ const { accommodation, giftRegistry, playlist, schedule, weddingPlanner } = wedd
 <BaseLayout>
   <HeroSection />
   <VenueSection />
-  {accommodation.enabled && <AccommodationSection />}
   {schedule.enabled && <ScheduleSection />}
-  {giftRegistry.enabled && <GiftRegistrySection />}
   {playlist.enabled && <PlaylistSection />}
+  {accommodation.enabled && <AccommodationSection />}
+  {giftRegistry.enabled && <GiftRegistrySection />}
   {weddingPlanner.enabled && <WeddingPlannerSection />}
   <RsvpSection />
 </BaseLayout>

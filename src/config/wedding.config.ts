@@ -62,7 +62,11 @@ export const weddingConfig: WeddingConfig = {
 
   schedule: {
     // Switch to `true` to display this section and its navigation link.
-    enabled: false,
+    enabled: true,
+    // Switch to `false` once the timeline below is finalised.
+    underConstruction: true,
+    constructionMessage:
+      'Le déroulé précis de la journée est encore en cours de préparation. Nous le dévoilerons ici très bientôt, revenez y jeter un œil !',
     eyebrow: 'Le programme',
     title: 'Le déroulé de la journée',
     description:
@@ -178,21 +182,16 @@ export const weddingConfig: WeddingConfig = {
 
   giftRegistry: {
     // Switch to `true` to display this section and its navigation link.
-    enabled: false,
-    eyebrow: 'Liste de mariage',
+    enabled: true,
+    eyebrow: 'Cagnotte',
     title: 'Participer à notre aventure',
     description:
-      'Votre présence est déjà le plus beau des cadeaux. Si vous souhaitez néanmoins nous gâter, voici quelques idées.',
+      'Après avoir trinqué avec vous au cœur des vignes, nous rêvons de poursuivre l\'aventure un peu plus loin. Cette cagnotte nous emmènera en voyage de noces : merci de faire partie du voyage.',
     links: [
       {
         label: 'Notre cagnotte en ligne',
         description: 'Pour participer à notre voyage de noces.',
-        url: 'https://example.com/cagnotte',
-      },
-      {
-        label: 'Notre liste de mariage',
-        description: 'Une sélection d’idées pour notre futur chez-nous.',
-        url: 'https://example.com/liste',
+        url: 'https://www.onparticipe.fr/c/AKzAJ0WB',
       },
     ],
   },

@@ -5,7 +5,7 @@ import SectionHeading from './SectionHeading.astro';
 const { giftRegistry } = weddingConfig;
 ---
 
-<section id="liste-de-mariage" class="bg-shell/40 px-5 py-24 sm:px-8 sm:py-32">
+<section id="cagnotte" class="bg-shell/40 px-5 py-24 sm:px-8 sm:py-32">
   <div class="mx-auto max-w-4xl">
     <SectionHeading
       eyebrow={giftRegistry.eyebrow}
@@ -13,7 +13,12 @@ const { giftRegistry } = weddingConfig;
       description={giftRegistry.description}
     />
 
-    <ul class="mt-14 grid gap-6 sm:grid-cols-2">
+    <ul
+      class:list={[
+        'mt-14 grid gap-6',
+        giftRegistry.links.length > 1 ? 'sm:grid-cols-2' : 'mx-auto max-w-md',
+      ]}
+    >
       {
         giftRegistry.links.map((link) => (
           <li class="reveal">

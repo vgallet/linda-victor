@@ -85,6 +85,13 @@ export interface ScheduleEntry {
 export interface ScheduleConfig extends SectionIntro {
   /** Set to `true` to display the section and its navigation entry. */
   enabled: boolean;
+  /**
+   * When `true`, the detailed timeline is hidden and `constructionMessage`
+   * is shown instead — useful while the schedule is still being finalised.
+   */
+  underConstruction: boolean;
+  /** Notice displayed in place of the timeline while under construction. */
+  constructionMessage: string;
   entries: ScheduleEntry[];
 }
 
