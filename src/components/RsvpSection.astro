@@ -9,6 +9,7 @@ const endpoint = import.meta.env.PUBLIC_RSVP_ENDPOINT ?? '';
 const missingEndpointMessage = `Le formulaire n’est pas encore relié. Écrivez-nous à ${rsvp.contactEmail}.`;
 
 const guestCountOptions = Array.from({ length: rsvp.maxAdditionalGuests + 1 }, (_, index) => index + 1);
+const childrenCountOptions = Array.from({ length: rsvp.maxAdditionalGuests + 1 }, (_, index) => index);
 ---
 
 <section id="rsvp" class="bg-ivory px-5 py-24 sm:px-8 sm:py-32">
@@ -91,6 +92,13 @@ const guestCountOptions = Array.from({ length: rsvp.maxAdditionalGuests + 1 }, (
           <select class="field-control" id="rsvp-guestCount" name="guestCount">
             {guestCountOptions.map((count) => <option value={count}>{count}</option>)}
           </select>
+        </div>
+        <div>
+          <label class="field-label" for="rsvp-childrenCount">Nombre d’enfants</label>
+          <select class="field-control" id="rsvp-childrenCount" name="childrenCount">
+            {childrenCountOptions.map((count) => <option value={count}>{count}</option>)}
+          </select>
+          <p class="mt-1 text-xs text-muted">Enfants de moins de 12 ans</p>
         </div>
         <div>
           <label class="field-label" for="rsvp-dietary">Régime / allergies</label>

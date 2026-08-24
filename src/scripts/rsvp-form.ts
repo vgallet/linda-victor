@@ -13,6 +13,7 @@ interface RsvpPayload {
   phone: string;
   attending: string;
   guestCount: string;
+  childrenCount: string;
   dietary: string;
   message: string;
   website: string;
@@ -53,6 +54,7 @@ function readPayload(): RsvpPayload {
     phone: read('phone'),
     attending: read('attending'),
     guestCount: read('guestCount'),
+    childrenCount: read('childrenCount'),
     dietary: read('dietary'),
     message: read('message'),
     website: read('website'),

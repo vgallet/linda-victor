@@ -21,6 +21,7 @@ var HEADERS = [
   'Téléphone',
   'Présence',
   'Nombre de personnes',
+  'Nombre d’enfants (-12 ans)',
   'Régime / allergies',
   'Message',
 ];
@@ -59,6 +60,7 @@ function doPost(request) {
       trimToString(payload.phone),
       attending === 'oui' ? 'Présent(e)' : 'Absent(e)',
       attending === 'oui' ? toGuestCount(payload.guestCount) : 0,
+      attending === 'oui' ? toChildrenCount(payload.childrenCount) : 0,
       trimToString(payload.dietary),
       trimToString(payload.message),
     ];
@@ -131,8 +133,9 @@ function sendNotification(row) {
     'Téléphone : ' + row[3] + '\n' +
     'Présence : ' + row[4] + '\n' +
     'Nombre de personnes : ' + row[5] + '\n' +
-    'Régime / allergies : ' + row[6] + '\n' +
-    'Message : ' + row[7] + '\n';
+    'Nombre d’enfants (-12 ans) : ' + row[6] + '\n' +
+    'Régime / allergies : ' + row[7] + '\n' +
+    'Message : ' + row[8] + '\n';
 
   MailApp.sendEmail(NOTIFICATION_EMAIL, 'RSVP — ' + row[1], body);
 }
@@ -140,6 +143,12 @@ function sendNotification(row) {
 function toGuestCount(value) {
   var count = parseInt(value, 10);
   if (isNaN(count) || count < 1) return 1;
+  return Math.min(count, 20);
+}
+
+function toChildrenCount(value) {
+  var count = parseInt(value, 10);
+  if (isNaN(count) || count < 0) return 0;
   return Math.min(count, 20);
 }
 

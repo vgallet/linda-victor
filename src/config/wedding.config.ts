@@ -24,7 +24,7 @@ export const weddingConfig: WeddingConfig = {
     introduction: 'Nous nous marions',
     ctaLabel: 'Confirmer ma présence',
     // Drop your own picture in `public/images/` and update this path.
-    backgroundImage: 'images/us.jpg',
+    backgroundImage: 'images/us2.jpg',
   },
 
   venue: {
