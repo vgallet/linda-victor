@@ -151,10 +151,10 @@ export interface WeddingPlannerConfig extends SectionIntro {
   photo: string;
   /** Descriptive alt text for the portrait. */
   photoAlt: string;
-  /** Link to the planner's website. */
-  websiteUrl: string;
-  /** Label of the button opening the website. */
-  websiteLabel: string;
+  /** Planner's contact email address. */
+  email: string;
+  /** Planner's contact phone number. */
+  phone: string;
 }
 
 export interface PlaylistConfig extends SectionIntro {

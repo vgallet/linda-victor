@@ -40,14 +40,39 @@ const photoUrl = withBase(weddingPlanner.photo);
           {weddingPlanner.description}
         </p>
 
-        <div class="mt-8">
+        <div class="mt-8 flex flex-wrap gap-4">
           <a
             class="btn btn-primary"
-            href={weddingPlanner.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`tel:${weddingPlanner.phone.replace(/\s+/g, '')}`}
           >
-            {weddingPlanner.websiteLabel}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              class="h-4 w-4"
+            >
+              <path
+                d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+            {weddingPlanner.phone}
+          </a>
+          <a class="btn btn-outline" href={`mailto:${weddingPlanner.email}`}>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              class="h-4 w-4"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            {weddingPlanner.email}
           </a>
         </div>
       </div>

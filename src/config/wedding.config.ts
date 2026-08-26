@@ -162,8 +162,8 @@ export const weddingConfig: WeddingConfig = {
     role: 'Coordinatrice & officiante de cérémonie',
     photo: 'images/julie.jpg',
     photoAlt: "Julie, notre wedding planner de l'agence Enjoy Événements",
-    websiteUrl: 'https://enjoy-evenements.fr/',
-    websiteLabel: 'Découvrir Enjoy Événements',
+    email: 'julie@enjoy-evenements.fr',
+    phone: '+33 6 74 23 23 79',
   },
 
   rsvp: {
