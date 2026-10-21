@@ -64,7 +64,7 @@ export const weddingConfig: WeddingConfig = {
     // Switch to `true` to display this section and its navigation link.
     enabled: true,
     // Switch to `false` once the timeline below is finalised.
-    underConstruction: true,
+    underConstruction: false,
     constructionMessage:
       'Le déroulé précis de la journée est encore en cours de préparation. Nous le dévoilerons ici très bientôt, revenez y jeter un œil !',
     eyebrow: 'Le programme',
@@ -73,34 +73,34 @@ export const weddingConfig: WeddingConfig = {
       'Voici les grandes étapes de la journée pour que vous puissiez vous organiser sereinement.',
     entries: [
       {
-        time: '14h30',
+        time: '16h00',
         title: 'Accueil des invités',
         description:
-          'Rendez-vous dans la cour du château pour un rafraîchissement avant la cérémonie.',
+          'Rendez-vous dans la cour pour un rafraîchissement avant la cérémonie.',
         icon: 'welcome',
       },
       {
-        time: '15h30',
-        title: 'Cérémonie',
-        description: "Sous les chênes centenaires du parc. Prévoyez une tenue adaptée si le temps est incertain.",
+        time: '16h30',
+        title: 'Cérémonie Laïque',
+        description: "En plein coeur du Beaujolais, entourée de vignes et offrant une vue panoramique.",
         icon: 'ceremony',
       },
       {
-        time: '16h30',
+        time: '17h30',
         title: 'Photos de groupe',
         description: 'Quelques instants pour immortaliser la journée avec vous tous.',
         icon: 'photos',
       },
       {
-        time: '17h30',
+        time: '18h00',
         title: 'Vin d’honneur',
-        description: 'Cocktail et animations sur la terrasse, face aux vignes.',
+        description: 'Cocktail et apéritifs sur la terrasse, face aux vignes.',
         icon: 'cocktail',
       },
       {
         time: '20h00',
         title: 'Dîner',
-        description: 'Repas assis dans l’orangerie. Le plan de table vous attendra à l’entrée.',
+        description: 'Repas assis dans la salle de réception. Le plan de table vous attendra à l’entrée.',
         icon: 'dinner',
       },
       {
@@ -108,12 +108,6 @@ export const weddingConfig: WeddingConfig = {
         title: 'Ouverture du bal',
         description: 'Et ensuite, la piste est à vous jusqu’au bout de la nuit.',
         icon: 'party',
-      },
-      {
-        time: '11h00',
-        title: 'Brunch du dimanche',
-        description: 'Pour prolonger un peu la fête avant de se dire au revoir.',
-        icon: 'brunch',
       },
     ],
   },
