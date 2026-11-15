@@ -13,6 +13,7 @@ export interface NavigationLink {
 export const navigationLinks: NavigationLink[] = [
   { id: 'accueil', label: 'Accueil' },
   { id: 'lieu', label: 'Le lieu' },
+  { id: 'dress-code', label: 'Code couleur' },
   ...(weddingConfig.schedule.enabled ? [{ id: 'programme', label: 'Programme' }] : []),
   ...(weddingConfig.playlist.enabled ? [{ id: 'playlist', label: 'Playlist' }] : []),
   ...(weddingConfig.accommodation.enabled ? [{ id: 'sejour', label: 'Séjour' }] : []),

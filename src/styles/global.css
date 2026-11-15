@@ -11,23 +11,25 @@
   --font-serif: var(--font-display), 'Iowan Old Style', Georgia, serif;
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 
-  /* Spring / pastel watercolor palette. */
-  --color-ivory: #faf7f2;
-  --color-shell: #f4eff8;
-  --color-sand: #e6dcec;
-  --color-ink: #3a332c;
-  --color-muted: #6f6773;
-  --color-sage: #8caa83;
-  --color-sage-dark: #6d8b66;
-  --color-gold: #ac8b4f;
-  --color-blush: #e3aebc;
+  /* Wedding palette: warm peach, olive, coral, orange, yellow and blue. */
+  --color-ivory: #fffcf8;
+  --color-shell: #f4e5da;
+  --color-sand: #e8d5c9;
+  --color-ink: #30271f;
+  --color-muted: #6b5f57;
+  --color-sage: #92966d;
+  --color-sage-dark: #687044;
+  --color-gold: #b66b37;
+  --color-blush: #e85c75;
+  --color-coral-dark: #b83e57;
 
-  /* Floral accents used by the watercolor decorations. */
-  --color-lavender: #b3a0d6;
-  --color-lilac: #cdbce8;
-  --color-sky: #a6c3e6;
-  --color-butter: #f1d98a;
-  --color-leaf: #9dbd8c;
+  /* Secondary floral accents, used sparingly for small details. */
+  --color-lavender: #91a9d5;
+  --color-lilac: #f0cfc2;
+  --color-sky: #91a9d5;
+  --color-butter: #ffd84e;
+  --color-leaf: #92966d;
+  --color-orange: #df8545;
 
   --radius-card: 1.25rem;
 
@@ -58,17 +60,17 @@
     background-image:
       radial-gradient(
         1200px 620px at 12% -8%,
-        color-mix(in srgb, var(--color-lilac) 26%, transparent),
+        color-mix(in srgb, var(--color-blush) 13%, transparent),
         transparent 60%
       ),
       radial-gradient(
         1080px 560px at 100% -4%,
-        color-mix(in srgb, var(--color-sky) 20%, transparent),
+        color-mix(in srgb, var(--color-sky) 16%, transparent),
         transparent 58%
       ),
       radial-gradient(
         900px 520px at 50% 108%,
-        color-mix(in srgb, var(--color-blush) 16%, transparent),
+        color-mix(in srgb, var(--color-butter) 12%, transparent),
         transparent 60%
       );
     background-attachment: fixed;
@@ -139,8 +141,8 @@
   }
 
   .btn-outline:hover {
-    border-color: var(--color-sage-dark);
-    color: var(--color-sage-dark);
+    border-color: var(--color-coral-dark);
+    color: var(--color-coral-dark);
   }
 
   .field-label {

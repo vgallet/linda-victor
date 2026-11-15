@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import VenueSection from '../components/VenueSection.astro';
+import DressCodeSection from '../components/DressCodeSection.astro';
 import AccommodationSection from '../components/AccommodationSection.astro';
 import ScheduleSection from '../components/ScheduleSection.astro';
 import GiftRegistrySection from '../components/GiftRegistrySection.astro';
@@ -16,6 +17,7 @@ const { accommodation, giftRegistry, playlist, schedule, weddingPlanner } = wedd
 <BaseLayout>
   <HeroSection />
   <VenueSection />
+  <DressCodeSection />
   {schedule.enabled && <ScheduleSection />}
   {playlist.enabled && <PlaylistSection />}
   {accommodation.enabled && <AccommodationSection />}

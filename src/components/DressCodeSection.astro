@@ -1,0 +1,34 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const palette = [
+  { name: 'Olive', hex: '#92966D', className: 'bg-sage' },
+  { name: 'Rose corail', hex: '#E85C75', className: 'bg-blush' },
+  { name: 'Orange', hex: '#DF8545', className: 'bg-orange' },
+  { name: 'Jaune soleil', hex: '#FFD84E', className: 'bg-butter' },
+  { name: 'Bleu doux', hex: '#91A9D5', className: 'bg-sky' },
+];
+---
+
+<section id="dress-code" class="bg-shell/40 px-5 py-24 sm:px-8 sm:py-32">
+  <div class="mx-auto max-w-5xl">
+    <SectionHeading
+      eyebrow="Code couleur"
+      title="Une palette aux couleurs de l’été"
+      description="Pour vos tenues, vous pouvez vous inspirer de ces tons pastel : une seule touche de couleur suffit pour entrer dans l’ambiance."
+    />
+
+    <ul class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-5 sm:gap-5">
+      {palette.map((color) => (
+        <li class="reveal flex flex-col items-center rounded-card border border-sand/60 bg-ivory/80 px-4 py-6 text-center">
+          <span
+            aria-hidden="true"
+            class:list={['h-16 w-16 rounded-full ring-1 ring-black/5 sm:h-20 sm:w-20', color.className]}
+          ></span>
+          <span class="mt-4 font-serif text-lg text-ink">{color.name}</span>
+          <span class="mt-1 font-mono text-xs tracking-wider text-muted">{color.hex}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
